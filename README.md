@@ -52,3 +52,38 @@ cd C:\xampp\htdocs
 sonar-scanner
 ```
 จะส่งข้อมูลไปที่ SonarQube server
+
+# วิธีติดตั้ง SonarScanner บน Ubuntu (แบบ Manual)
+1. ดาวน์โหลดและแตกไฟล์
+```
+cd /opt
+sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.1.0.4889-linux-x64.zip
+sudo unzip sonar-scanner-cli-7.1.0.4889-linux-x64.zip
+sudo mv sonar-scanner-7.1.0.4889-linux /opt/sonar-scanner
+```
+2. ตั้ง PATH ให้เรียกใช้ได้จากที่ไหนก็ได้
+```
+echo 'export PATH=$PATH:/opt/sonar-scanner/bin' >> ~/.bashrc
+source ~/.bashrc
+```
+3. สร้าง sonar-project.properties ในโฟลเดอร์โปรเจกต์ของคุณ
+```
+sonar.projectKey=my-linux-project
+sonar.projectName=My Ubuntu Project
+sonar.projectVersion=1.0
+
+sonar.sources=.
+sonar.language=php
+sonar.sourceEncoding=UTF-8
+
+sonar.host.url=http://10.20.252.26:9000
+sonar.login=YOUR_SONARQUBE_TOKEN
+
+```
+รันการสแกน
+```
+cd /path/to/your/project
+sonar-scanner
+```
+
+
