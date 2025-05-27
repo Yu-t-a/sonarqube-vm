@@ -23,3 +23,32 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 docker compose version
 docker compose up -d
 ```
+#  client
+1. ติดตั้ง SonarScanner บน Windows
+```
+https://docs.sonarsource.com/sonarqube-server/10.8/analyzing-source-code/scanners/sonarscanner/
+```
+-แตกไฟล์ zip ไปไว้ที่เช่น C:\sonarscanner
+
+-เพิ่ม path C:\sonarscanner\bin ไปใน Environment Variable (PATH)
+
+🧾 2. สร้างไฟล์ sonar-project.properties ในโฟลเดอร์ htdocs
+```
+sonar.projectKey=my-xampp-project
+sonar.projectName=XAMPP Project
+sonar.projectVersion=1.0
+
+sonar.sources=.
+sonar.language=php
+
+sonar.sourceEncoding=UTF-8
+sonar.host.url=http://10.20.252.26:9000
+sonar.login=YOUR_SONARQUBE_TOKEN
+```
+
+▶️ 3. เปิด Command Prompt แล้วรันคำสั่งนี้ใน htdocs:
+```
+cd C:\xampp\htdocs
+sonar-scanner
+```
+จะส่งข้อมูลไปที่ SonarQube server
